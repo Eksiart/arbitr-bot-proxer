@@ -22,6 +22,19 @@ app.post('/', (req, res) => {
   })
 })
 
+app.get('/', (req, res) => {
+  const {url, ...options} = req.query;
+  axios.get(url, {params: options})
+  .then(function (response) {
+    // console.log(response);
+    res.send(response.data);
+  })
+  .catch(function (error) {
+    // console.log(error);
+    res.send(error);
+  })
+})
+
 app.listen(port, () => {
   console.log(`Binance proxer started at ${port}`)
 })
